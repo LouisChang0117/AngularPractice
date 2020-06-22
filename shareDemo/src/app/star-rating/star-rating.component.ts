@@ -3,12 +3,9 @@ import {
   OnInit,
   Output,
   EventEmitter,
-  OnChanges,
-  SimpleChanges,
   Input,
   ContentChild,
   ViewChild,
-  AfterContentInit,
 } from '@angular/core';
 
 @Component({
@@ -39,6 +36,6 @@ export class StarRatingComponent implements OnInit {
 
   currentScope(current?: string) {
     this.vcChildScope = current;
-    this.childScope.emit(current);
+    // this.childScope.emit(current);
   }
 }
