@@ -9,29 +9,36 @@
             <div class="text-center">
               <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
             </div>
-            <form class="user">
+            <form class="user" [formGroup]="form">
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                   <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                         placeholder="First Name">
+                    formControlName="firstName" placeholder="First Name">
+                  <ul *ngIf="required('firstName')">
+                    <li style="color:red;" *ngIf="firstName.errors['required']">error</li>
+                  </ul>
                 </div>
                 <div class="col-sm-6">
                   <input type="text" class="form-control form-control-user" id="exampleLastName"
-                         placeholder="Last Name">
+                    formControlName="lastName" placeholder="Last Name">
                 </div>
               </div>
               <div class="form-group">
                 <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                       placeholder="Email Address">
+                  formControlName="email" placeholder="Email Address">
+                <ul *ngIf="email.invalid">
+                  <li style="color:red;" *ngIf="email.errors['required']">error</li>
+                  <li style="color:red;" *ngIf="email.errors['email']">error</li>
+                </ul>
               </div>
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                   <input type="password" class="form-control form-control-user" id="exampleInputPassword"
-                         placeholder="Password">
+                    formControlName="password" placeholder="Password">
                 </div>
                 <div class="col-sm-6">
                   <input type="password" class="form-control form-control-user" id="exampleRepeatPassword"
-                         placeholder="Repeat Password">
+                    formControlName="repeatPassword" placeholder="Repeat Password">
                 </div>
               </div>
               <a href="login.html" class="btn btn-primary btn-user btn-block"> Register Account </a>

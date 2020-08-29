@@ -8,14 +8,17 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-
   data: any = {
     email: '',
     password: '',
     rememberMe: true
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     document.body.className = 'bg-gradient-primary';
@@ -48,5 +51,4 @@ export class LoginComponent implements OnInit, OnDestroy {
         break;
     }
   }
-
 }
