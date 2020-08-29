@@ -9,7 +9,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   data: any = {
     firstName: 'Will',
     lastName: 'Huang',
-    email: 'doggy.huang@gmail.com',
+    emails: ['d1@gmail.com', 'd2@gmail.com', 'd3@gmail.com'],
     password: '',
     repeatPassword: '',
   };
@@ -30,21 +30,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
     // });
 
     this.form = this.fb.group({
-      firstName: this.fb.control('Will', {
+      firstName: this.fb.control('', {
         validators: [Validators.required],
         updateOn: 'blur',
       }),
-      lastName: this.fb.control('Huang', {
+      lastName: this.fb.control('', {
         validators: [Validators.required, Validators.email],
       }),
-      emails: this.fb.array([
-        this.fb.control('doggy.huang@gmail.com', {
-          validators: [Validators.required],
-        }),
-        this.fb.control('abc@example.com', {
-          validators: [Validators.required],
-        }),
-      ]),
+      emails: this.fb.array([]),
       password: this.fb.control('', {
         validators: [Validators.required, Validators.minLength(6)],
       }),
@@ -52,6 +45,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
         validators: [Validators.required, Validators.minLength(6)],
       }),
     });
+
+    for (const _ of this.data.emails) {
+      this.addNewEmail();
+    }
+
+    this.form.setValue(this.data);
   }
 
   ngOnDestroy(): void {
@@ -100,5 +99,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
     // email.disable();
 
     this.fa('emails').push(email);
+  }
+
+  doReset(): void {
+    this.form.reset(this.data);
   }
 }
